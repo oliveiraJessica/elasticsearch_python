@@ -28,3 +28,9 @@
 - More detailed information:
 	- [Install ElasticSearch with Docker](https://www.elastic.co/guide/en/elasticsearch/reference/master/docker.html#docker-cli-run-dev-mode)
 	- [Install Kibana with Docker](https://www.elastic.co/guide/en/kibana/current/docker.html)
+
+# ElasticSearch and Python
+Using EsPandas
+(documentation)[https://github.com/dashaub/espandas]
+
+- validate_query
