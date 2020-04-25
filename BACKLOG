@@ -1,0 +1,3 @@
+- Ler config do config.yml
+- Separa utils e main
+- Colocar config de Debug

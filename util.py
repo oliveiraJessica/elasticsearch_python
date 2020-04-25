@@ -1,4 +1,3 @@
-from espandas import Espandas
 import elasticsearch
 import pandas as pd
 
@@ -8,33 +7,43 @@ data = {'Name':['Jai', 'Princi', 'Gaurav', 'Anuj'],
         'Address':['Delhi', 'Kanpur', 'Allahabad', 'Kannauj'],
         'Qualification':['Msc', 'MA', 'MCA', 'Phd']}
 df = pd.DataFrame(data)
-print(df)
 
 es =  elasticsearch.Elasticsearch(
     ['localhost'],
-    scheme="https",
+    scheme="http",
     port=9200,
-    #ssl_context=context,
 )
 
+# Create index if not existent
+def write_index(index_name, data, id="_id"):
+	#es.helpers.bulk(es, data)
+    res = es.index(index=index_name,body=data.to_json())
+    return res.get(id)
 
-#esp = Espandas()
-#esp.es_write(df, "index.test", "_doc")
+def exists(index_name):
+    return es.indices.exists(index=index_name)
 
-# read index
-# write index
-def write_index(index_name, es, data):
-	if not es.exists(index=index_name):
-		es.create(index=index_name)
-	#es.index(index, data)
-	elasticsearch.helpers.bulk(es, data)
+def create_index(index_name):
+    es.indices.create(index=index_name)
+
 # get schema
 #es.get() ou es.get_mapping()
 
 # write schema
 #put_mapping
 
-#res = es.search(index="test-index", body={"query": {"match_all": {}}})
+# read index
+def get_all(index_name):
+    res = es.search(index=index_name, body={"query": {"match_all": {}}})
+    print(res.get("hits").get("hits"))
+    return pd.DataFrame(res.get("hits").get("hits"))
+
+def search(es_object, index_name, search):
+    res = es.search(index=index_name, body=search)
 #- validate_query
 
-write_index("teste", es, df)
+write_index("teste", df)
+elastic_df = get_all("teste")
+
+print ('elastic_df:', type(elastic_df), "\n")
+print (elastic_df) # print out the DF object's contents
