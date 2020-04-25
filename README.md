@@ -19,11 +19,11 @@
 
 - Simple docker compose with elastic search and kibana. For this project the configuration `discovery.type=single-node` is used. For more discovery options see [link](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-discovery-settings.html) 
 
-- To run ElasticSearch:
-	`docker-compose up`
+- To run ElasticSearch:	`docker-compose up`
 
-- To stop the services:
-	`docker-compose down`
+- To stop the services:	`docker-compose down`
+
+- http://localhost:5601/
 
 - More detailed information:
 	- [Install ElasticSearch with Docker](https://www.elastic.co/guide/en/elasticsearch/reference/master/docker.html#docker-cli-run-dev-mode)
@@ -33,4 +33,6 @@
 Using EsPandas
 (documentation)[https://github.com/dashaub/espandas]
 
-- validate_query
+(ElastiSearch)[https://elasticsearch-py.readthedocs.io/en/master/]
+
+
